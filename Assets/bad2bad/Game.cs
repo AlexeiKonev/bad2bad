@@ -132,14 +132,43 @@ public class Game : MonoBehaviour
 
     void Update()
     {
+        Move();
+
+        SaveMethod();
+        LoadMethod();
+    }
+
+    private void SaveMethod()
+    {
+        if (Input.GetKey(KeyCode.F12))
+        {
+            PositionUpdate();
+
+            Debug.Log("save");
+        }
+
+
+    }
+
+    private void LoadMethod()
+    {
+        if (Input.GetKey(KeyCode.F11))
+        {
+
+            Debug.Log("load");
+        }
+    }
+
+    private void Move()
+    {
         if (Input.GetAxis("Horizontal") > 0)
         {
             playerTransform.Translate(Vector2.right * Time.deltaTime);
         }
-        if (Input.GetAxis("Horizontal") > 0)
+        if (Input.GetAxis("Horizontal") < 0) // Исправленное условие для движения влево
         {
             playerTransform.Translate(Vector2.left * Time.deltaTime);
-        } 
+        }
         if (Input.GetAxis("Vertical") > 0)
         {
             playerTransform.Translate(Vector2.up * Time.deltaTime);
@@ -148,22 +177,7 @@ public class Game : MonoBehaviour
         {
             playerTransform.Translate(Vector2.down * Time.deltaTime);
         }
-    
-
-    
-
-
-        if (Input.GetKey(KeyCode.F12))
-        {
-            PositionUpdate();
-            Debug.Log("save");
-        }
-
-        if (Input.GetKey(KeyCode.F11))
-        {
-
-            Debug.Log("load");
-        }
     }
+
 }
 
